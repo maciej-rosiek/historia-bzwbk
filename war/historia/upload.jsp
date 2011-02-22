@@ -8,11 +8,6 @@
     <title>Historia BZWBK</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link media="screen" href="/historia/css/style.css" type="text/css" rel="stylesheet" />
-    <script language="javascript" src="/historia/js/jquery-core.js" type="text/javascript"></script>
-    <script language="javascript" type="text/javascript">
-        $(document).ready(function() {
-        });
-    </script>
 </head>
 <body>
   <h1>Historia BZWBK</h1>

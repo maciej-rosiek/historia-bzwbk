@@ -37,8 +37,8 @@
     <tbody>
       <c:forEach items="${history}" var="entry">
         <tr>
-          <td><fmt:formatDate value="${entry.startDate}" pattern="dd-MM-yyyy"/></td>
-          <td><fmt:formatDate value="${entry.endDate}" pattern="dd-MM-yyyy"/></td>
+          <td><fmt:formatDate value="${entry.startDate}" pattern="yyyy-MM-dd"/></td>
+          <td><fmt:formatDate value="${entry.endDate}" pattern="yyyy-MM-dd"/></td>
           <td>${entry.sender}</td>
           <td>${entry.account}</td>
           <td>${entry.title}</td>
