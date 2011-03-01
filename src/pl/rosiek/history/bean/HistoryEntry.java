@@ -42,6 +42,8 @@ public class HistoryEntry {
 	}
 	public void setAmount(String amount) {
 		this.amount = amount;
+		if (this.amount != null && this.amount.length() > 0 && !this.amount.startsWith("-"))
+			this.amount = "+" + this.amount;
 	}
 	public String getSaldo() {
 		return saldo;

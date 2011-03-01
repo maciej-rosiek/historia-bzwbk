@@ -9,13 +9,21 @@
     <title>Historia BZWBK</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link media="screen" href="/historia/css/style.css" type="text/css" rel="stylesheet" />
+    <link media="screen" href="/historia/css/jquery-ui-smoothness.css" type="text/css" rel="stylesheet" />
     <script language="javascript" src="/historia/js/jquery-core.js" type="text/javascript"></script>
     <script language="javascript" src="/historia/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         $(document).ready(function() {
-          $('table').dataTable({    
-            "aLengthMenu": [[-1, 10, 25, 50, 100, 200, 500], ["Wszystkie", 10, 25, 50, 100, 200, 500]],
-            "iDisplayLength" : -1
+          var dt = $('table').dataTable({    
+                     "aLengthMenu": [[-1, 10, 25, 50, 100, 200, 500], ["Wszystkie", 10, 25, 50, 100, 200, 500]],
+                     "iDisplayLength" : -1,
+                     "bJQueryUI": true,
+                   });
+                           
+          var select = $('<select style="float: right;"><option value="">wszystko</option><option value="+">wpływy</option><option value="-">wydatki</option></select>');
+          $(".dataTables_filter").before(select);
+          $('select', this).change(function () {
+            dt.fnFilter($(this).attr('value'), 5);
           });
         });
     </script>
@@ -23,7 +31,7 @@
 <body>
   <p><a href="/">Zacznij od nowa</a></p>
   <h1>Historia BZWBK</h1>
-  <table border="1" cellspacing="0" cellpadding="5" class="display">
+  <table class="display">
     <thead>
       <tr>
         <th>Data 1</th>
