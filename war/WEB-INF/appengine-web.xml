@@ -2,7 +2,7 @@
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
 
     <application>historia-bzwbk</application>
-    <version>1-0-1</version>
+    <version>1-0-2</version>
 
     <system-properties>
       <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
