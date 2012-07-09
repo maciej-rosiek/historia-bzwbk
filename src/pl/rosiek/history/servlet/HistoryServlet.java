@@ -18,7 +18,9 @@ import com.google.appengine.api.blobstore.BlobstoreInputStream;
 
 public class HistoryServlet extends HttpServlet {
 
-    @Override
+	private static final long serialVersionUID = -989625274320772398L;
+
+	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	String blobKey = req.getParameter("blob");
     	String recentBlob = (String) req.getSession(true).getAttribute("recent-blob");
@@ -29,7 +31,6 @@ public class HistoryServlet extends HttpServlet {
 			List<HistoryEntry> history = historyReport.read(historyReader);
 			historyReader.close();
 			historyStream.close();
-			//BlobstoreServiceFactory.getBlobstoreService().delete(new BlobKey(blobKey));
 			req.setAttribute("history", history);
 		    req.getRequestDispatcher("/historia/historia.jsp").forward(req, resp);
     	}

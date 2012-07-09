@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RedirectServlet extends HttpServlet {
 
-    @Override
+	private static final long serialVersionUID = 94285311383181915L;
+
+	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.sendRedirect("/upload");
     }

@@ -14,6 +14,8 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 
 public class UploadServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 970805354186205611L;
+	
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 	
     @Override

@@ -2,6 +2,7 @@ package pl.rosiek.history.bean;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.logging.Logger;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVStrategy;
 
+import pl.rosiek.history.utils.IOUtils;
+
 public class HistoryReport {
 
     private static final Logger log = Logger.getLogger(HistoryReport.class.getName());
@@ -18,14 +21,17 @@ public class HistoryReport {
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 	public List<HistoryEntry> read(Reader history) throws IOException {
+		Reader cleanHistory = cleanHistory(history);
 		CSVStrategy strategy = new CSVStrategy(',', '"', '-');
-		CSVParser parser = new CSVParser(history, strategy);
-		String[][] lines = parser.getAllValues();
+		CSVParser parser = new CSVParser(cleanHistory, strategy);
 		List<HistoryEntry> entries = new ArrayList<HistoryEntry>();
-		for (String[] line : lines) {
-			HistoryEntry entry = createEntry(line);
-			if (entry != null)
-				entries.add(entry);
+		String[][] lines = parser.getAllValues();
+		if (lines != null) {
+			for (String[] line : lines) {
+				HistoryEntry entry = createEntry(line);
+				if (entry != null)
+					entries.add(entry);
+			}
 		}
 		return entries;
 	}
@@ -60,5 +66,11 @@ public class HistoryReport {
 			result += l + " | ";
 		return result;
 	}
-	
+
+	private Reader cleanHistory(Reader in) throws IOException {
+		String history = IOUtils.convertToString(in);
+		history = history.replaceAll("\"\"", "\"");
+		return new StringReader(history);
+	}
+
 }
